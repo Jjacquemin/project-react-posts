@@ -20,7 +20,6 @@ class PostList extends Component {
   }
 
   render() {
-    console.log(this.props.posts)
     return (
       <div>
         <h1>Boite à post</h1>
@@ -47,7 +46,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({readAllPost}, dispatch),
+  ...bindActionCreators({readAllPost}, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList)

@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class PostContent extends Component {
-  render() {
-    return (
-      <div>
-        <h3>contenu du post</h3>
-      </div>
-    )
+const PostContent = ({post}) => {
+  if(!post){
+    return <div>Pas de post trouvé</div>
   }
+  return (
+    <div>
+      <h2>{post.title}</h2>
+      <p className='default_margin_top'>{post.content}</p>
+      <p>Auteur : {post.author}</p>
+    </div>
+  )
 }
 
 export default PostContent
