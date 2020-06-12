@@ -4,9 +4,10 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {readAllPost,deletePost} from '../actions/index'
 import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import {Link} from 'react-router-dom'
 
 class PostList extends Component {    
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.readAllPost()
   }
 
@@ -28,6 +29,11 @@ class PostList extends Component {
     return (
       <div className='default_margin_top'>
         <h1>Boite à post</h1>
+        <div className='button_add'>
+          <Link to={'/create-post'}>
+            <button className='btn btn-primary btn-circle btn-lg'>+</button>
+          </Link>
+        </div>
         <table className='table table-hover'>
           <thead>
             <tr>

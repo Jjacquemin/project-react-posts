@@ -28,3 +28,23 @@
   opacity: 1;
   transition: opacity .5s ease-in;
 }
+
+.button_add {
+  position: fixed;
+  bottom: 50%;
+  right: 10%;
+}
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 50%;
+  outline: 0px !important /* Pas de carré apres clic*/
+}
+
+.button_space{
+  padding-right: 30px;
+}

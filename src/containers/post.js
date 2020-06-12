@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {readPost} from '../actions/index'
 import PostContent from '../components/post-content'
+import {Link} from 'react-router-dom'
 
 class Post extends Component {
 
@@ -14,6 +15,9 @@ class Post extends Component {
     return (
       <div>
         <PostContent post={this.props.post}/> 
+        <Link className="button_space" to="/">
+          <button className="btn btn-danger">Retour</button>
+        </Link>
       </div>
     )
   }
