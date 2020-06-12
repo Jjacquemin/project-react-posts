@@ -1,11 +1,11 @@
 import React from 'react'
 
 const NotFound = () => {
-  return (
-    <div>
-      <h1>Erreur 404</h1>
-    </div>
-  )
+    return (
+        <div className="default_margin_top">
+            <h1>Oups ERREUR 404  ! Désolé il y'a erreur sur la page :)</h1>
+        </div>
+    )
 }
 
 export default NotFound

@@ -1,31 +1,32 @@
 import React, { Component } from 'react'
+import PostListItem from '../components/post-list-item'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {readAllPost, deletePost} from '../actions/index'
-import PostListItem from '../components/post-list-item'
+import {readAllPost,deletePost} from '../actions/index'
+import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
-class PostList extends Component {
-
-  UNSAFE_componentWillMount() {
+class PostList extends Component {    
+  componentWillMount() {
     this.props.readAllPost()
   }
 
-  renderPosts() {
+  renderPosts(){
     const {posts} = this.props
-    if (posts) {
-      return posts.map(post => {
-        return <PostListItem key={post.id} post={post} deletePostCallBack={post => this.deletePostCallBack(post)}/>
+
+    return (
+      posts.map(post => {
+        return <PostListItem post={post} key={post.id} deletePostCallBack={this.deletePost.bind(this)}/>
       })
-    }
+    )
   }
 
-  deletePostCallBack(post){
+  deletePost(post){
     this.props.deletePost(post.id)
   }
 
   render() {
     return (
-      <div>
+      <div className='default_margin_top'>
         <h1>Boite à post</h1>
         <table className='table table-hover'>
           <thead>
@@ -34,23 +35,27 @@ class PostList extends Component {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          <ReactCSSTransitionGroup
+            transitionName="fade"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}
+            component="tbody"
+          >
             {this.renderPosts()}
-          </tbody>
+          </ReactCSSTransitionGroup>       
         </table>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    posts: state.posts
-  }
-}
-
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({readAllPost, deletePost}, dispatch)
+  ...bindActionCreators({readAllPost,deletePost}, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostList)
+const mapStateToProps = state => {
+  return {
+    posts:state.posts
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps) (PostList)
